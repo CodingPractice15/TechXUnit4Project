@@ -26,10 +26,12 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'database'
 
 # URI of database
-app.config['MONGO_URI'] = "<replace_with_real_mongodb_url>"
+app.config['MONGO_URI'] = "mongodb+srv://admin:0UnvepiYIMIZPfib@cluster0.cdko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 #Initialize PyMongo
 mongo = PyMongo(app)
+
+# mongo.db.create_collection("test")
 
 # -- Routes section --
 # INDEX Route
