@@ -7,8 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <!-- Materilize  -->
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <!-- importing meterialize icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <title>Home Page</title>
 </head>
 <body>
@@ -17,20 +20,27 @@
     {% block navbar %} 
     {% endblock %}
     <div class="search-box">
-        <i class="small material-icons">search</i>
-      
-        <input type="text" placeholder="Search">
+        <form action="post" action = "/index">
+        <!-- <i class="small material-icons">search</i> -->
+        
+        <input type="text" placeholder="Search" id="search">
+        
        
-        <i class="small material-icons">backspace</i>
+        <!-- <i class="small material-icons">backspace</i> -->
+        
+        <input type="submit"id="search-button" >
+      
+        
+    
+       
+        </form>
     </div>
 
 
-    <!-- Materilize  -->
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ 
 
      <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
              
 
     
