@@ -36,20 +36,20 @@ mongo = PyMongo(app)
 # -- Routes section --
 # INDEX Route
 @app.route('/')
-@app.route('/index')
+@app.route('/index',methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
-@app.route('/newreport')
+@app.route('/newreport',methods=['GET', 'POST'])
 def newreport():
     return render_template('newreport.html')
 # SignIn Route
-@app.route('/signin')
+@app.route('/signin',methods=['GET', 'POST'])
 def signin():
     return render_template('signin.html')
 
 # SignUp Route
-@app.route('/signup')
+@app.route('/signup',methods=['GET', 'POST'])
 def signup():
     return render_template('signup.html')
 
