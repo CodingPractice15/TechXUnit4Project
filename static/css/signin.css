@@ -1,0 +1,132 @@
+* {
+    background-color: #e9e9e9;
+}
+
+.image-form {
+    margin-top: 20px;
+    display: flex;
+}
+
+.image {
+    margin: 15px;
+    flex: 0.4;
+}
+
+.image > img {
+    max-width: 100%;
+
+}
+
+.form {
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 1px solid green;
+    flex: 0.6
+}
+
+.title {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: grey;
+}
+
+.form-box {
+    display: flex;
+    justify-content: center;
+}
+
+.form-item {
+    margin: 15px;
+}
+
+#submit {
+    text-align: center;
+}
+
+#submit > input:hover {
+    color: red;
+    border: 2px solid green;
+    cursor: pointer;
+}
+
+.goto {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ques {
+    font-weight:bolder;
+    text-align: center;
+    font-size: 2em;
+}
+
+.signup {
+    border: 3px solid red;
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.signup > a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signup:hover {
+    border: 3px solid green;
+}
+
+label {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(52, 52, 52);
+}
+
+input[type=text], input[type=email], input[type=password] {
+    width: 100%;
+    padding: 4px;
+    margin-top: 4px;
+    border: 1px solid rgb(164, 164, 164);
+}
+
+/* For Mobile  */
+@media (max-width: 826px) {
+    .image-form {
+        margin: 20px;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .form {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 1.9em;
+        font-weight: bold;
+        color: whitesmoke;
+        background-color: grey;
+    }
+
+    .form-box {
+        justify-content: center;
+    }
+
+    .form-item {
+        margin: 10px;
+    }
+}

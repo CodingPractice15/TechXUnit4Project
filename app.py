@@ -43,6 +43,16 @@ def index():
 @app.route('/newreport')
 def newreport():
     return render_template('newreport.html')
+# SignIn Route
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
+# SignUp Route
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 
 
 
