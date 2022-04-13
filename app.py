@@ -40,5 +40,16 @@ mongo = PyMongo(app)
 def index():
     return render_template('index.html')
 
+# SignIn Route
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
+# SignUp Route
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+
 
 
