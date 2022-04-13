@@ -8,6 +8,45 @@
     <title>SignIn</title>
   </head>
   <body>
-    <h1>You have to sign in!</h1>
+    {% include 'navbar.html' %} {% block navbar %} {% endblock %}
+    <div class="image-form">
+      <div class="image">
+        <img src="../static/images/crime-pic.jpg" alt="Crime Prevention" />
+      </div>
+
+      <div class="form">
+        <div class="title">Login To Your Account</div>
+        <div class="form-box">
+          <form action="POST">
+            <div class="form-item">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                placeholder="Enter you password"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-item" id="submit">
+              <input type="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="goto">
+      <div class="ques">Don't have Account? Register here.</div>
+      <div class="signup"><a href="/signup">SignUp</a></div>
+    </div>
   </body>
 </html>
