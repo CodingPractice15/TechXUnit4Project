@@ -40,5 +40,9 @@ mongo = PyMongo(app)
 def index():
     return render_template('index.html')
 
+@app.route('/newreport')
+def newreport():
+    return render_template('newreport.html')
+
 
 
