@@ -17,6 +17,7 @@ def get_list_states():
         lines_list = f.readlines()
         for state in lines_list:
             lst_states.append(state.strip())
+    print(lst_states)
     return lst_states
             
 

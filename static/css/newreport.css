@@ -1,0 +1,51 @@
+*{
+    margin: 0 ;
+    padding: 0 ;
+    font-family: 'Lato', sans-serif;
+}
+label{
+    color: #ffffff;
+}
+h1{
+    color: #ffffff;
+}
+
+body{
+   
+    background-image: url("../images/Document.jpg");
+    background-size: cover;
+    background-color:#fffbf0 ;
+    height:100%;
+    width: 100%;
+}
+.heading{
+    position: relative;
+    top:5%;
+    text-align: center;
+
+}
+.report-wrapper{
+    box-shadow: 10px 5px 5px rgb(105,105,105);
+    margin-top: 10%;
+    margin-bottom: 30px;
+    margin-left: 40%;
+    background-color:#2b6777 ;
+    display: inline-block;
+    justify-content: center;
+    border-radius: .5rem;   
+}
+.question{
+    margin: 10px;
+}
+label{
+    display: block;
+}
+textarea{
+    
+    display: block;
+}
+.input-button{
+    display: flex;
+    margin: 10px;
+    justify-content: start;
+}
