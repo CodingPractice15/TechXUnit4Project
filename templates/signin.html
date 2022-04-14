@@ -17,11 +17,12 @@
       <div class="form">
         <div class="title">Login To Your Account</div>
         <div class="form-box">
-          <form action="POST">
+          <form action="/signin" method="post">
             <div class="form-item">
               <label for="email">Email</label>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email address"
                 autocomplete="off"
               />
@@ -31,13 +32,14 @@
               <label for="password">Password</label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter you password"
                 autocomplete="off"
               />
             </div>
 
             <div class="form-item" id="submit">
-              <input type="submit" />
+              <input type="submit" name="submit" />
             </div>
           </form>
         </div>
