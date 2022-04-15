@@ -19,11 +19,8 @@ from flask import render_template
 from flask import request, redirect
 from flask_pymongo import PyMongo
 import secrets
-<<<<<<< HEAD
 import bcrypt
-=======
 from model import *
->>>>>>> 9029adfe5d7ab48d4a3af7140461b05f12bd09d2
 
 # -- Initialization section --
 app = Flask(__name__)
