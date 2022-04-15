@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 def get_list_states():
+    """ Function reads from text file and returns list of every state
+    ARGS: None
+
+    Returns:
+        return list of all the states in the US
+    """
     lst_states = []
     with open("state.txt",'r') as f:
         lines_list = f.readlines()
