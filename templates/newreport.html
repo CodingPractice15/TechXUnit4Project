@@ -3,6 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/newreport.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <title>New Report</title>
 </head>
 <body>
@@ -10,12 +17,37 @@
     {% include 'navbar.html' %} 
     {% block navbar %} 
     {% endblock %}
-    <div class="report-wrapper">
-        <div class="question">
-            <input type="text" name="" id="">
-        </div>
-
+    <div class="heading">
+        <h1>Report Crime</h1>
     </div>
+    
+    <div class="report-wrapper">
+        <form action="post" action="/newreport">
+        <div class="question">
+            <label for="Name">Full Name</label>
+            <input type="text" name="name" placeholder="FullName" value="" required>
+            
+        </div>
+        <div class="question">
+            <label for="State">Choose State</label>
+            <select name="state" id="state-option" required>
+                <option value="">None</option>
+                {% for state in list_state %}
+                <option value="{{state}}">{{state}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="question">
+            <label for="Description">Description</label>
+            <textarea name="description" id="description-area" cols="50" rows="25" required>
+            </textarea>
+        </div>
+        <div class="input-button">
+            <input type="submit" value="submit"/>
+        </div>
+        </form>
+    </div>
+   
   
     
 </body>

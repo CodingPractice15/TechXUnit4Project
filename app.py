@@ -19,7 +19,11 @@ from flask import render_template
 from flask import request, redirect
 from flask_pymongo import PyMongo
 import secrets
+<<<<<<< HEAD
 import bcrypt
+=======
+from model import *
+>>>>>>> 9029adfe5d7ab48d4a3af7140461b05f12bd09d2
 
 # -- Initialization section --
 app = Flask(__name__)
@@ -48,7 +52,13 @@ def index():
 
 @app.route('/newreport',methods=['GET', 'POST'])
 def newreport():
-    return render_template('newreport.html')
+    if request.method == "GET":
+        #calling method from model to get list of US states
+        list_state = get_list_states()
+        
+        return render_template('newreport.html',list_state=list_state)
+    else:
+        return "Post"
 
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])

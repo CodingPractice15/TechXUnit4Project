@@ -11,3 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+def get_list_states():
+    lst_states = []
+    with open("state.txt",'r') as f:
+        lines_list = f.readlines()
+        for state in lines_list:
+            lst_states.append(state.strip())
+    print(lst_states)
+    return lst_states
+            
+
+
