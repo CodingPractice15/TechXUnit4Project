@@ -1,11 +1,23 @@
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+<link rel="stylesheet" href="static/searchresults.css" />
 
-<ul id="myUL">
-  <li><a href="#">State</a></li>
-  <li><a href="#">State</a></li>
 
-  <li><a href="#">State</a></li>
-  <li><a href="#">State</a></li>
+<h1><span>Search Results</span></h1>
 
-  
-</ul>
+<div class="form">
+    <form action="/newreport" method="POST">
+
+        <label for="">State</label><br />
+        <input
+        type="text"
+        name="state"
+        placeholder="State"
+        autocomplete="off"
+      /><br /><br />
+
+      <label for="">Crime Description</label><br />
+        <input
+        type="text"
+        name="description"
+        placeholder="Description
+        autocomplete="off"
+      /><br /><br />
