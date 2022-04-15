@@ -19,6 +19,7 @@ from flask import render_template
 from flask import request, redirect
 from flask_pymongo import PyMongo
 import secrets
+import bcrypt
 
 # -- Initialization section --
 app = Flask(__name__)
@@ -62,10 +63,12 @@ def signup():
         if not existing_user and not existing_email:
             username = request.form['username']
             email = request.form['email']
-            password = request.form['password']
-            # storing password in plain text is not good.
+            password = request.form['password'].encode("utf-8")
+            salt = bcrypt.gensalt()
+            hashed_password = bcrypt.hashpw(password, salt)
+
             # add new user to database
-            users.insert_one({'name':username, 'email':email, 'password':password})
+            users.insert_one({'name':username, 'email':email, 'password':hashed_password})
             return redirect(url_for('signin'))
         elif existing_user:
             return "Username already registered. Try logging in. If you still want to signup, try with another username."
@@ -79,12 +82,12 @@ def signup():
 def signin():
     if request.method == 'POST':
         email = request.form["email"]
-        password = request.form["password"]
+        password = request.form["password"].encode("utf-8")
 
         lookedup_user = mongo.db.userinfo.find_one({"email":email})
 
         if lookedup_user:
-            if lookedup_user["password"] == password:
+            if bcrypt.checkpw(password, lookedup_user["password"]):
                 session["name"] = lookedup_user["name"]
                 return render_template('index.html')
             else:
@@ -94,6 +97,11 @@ def signin():
     else:
         return render_template('signin.html')
 
-
+# Logout Route
+@app.route('/logout')
+def logout():
+    # clear the username from the session data
+    session.clear()
+    return redirect('/')
 
 
