@@ -29,9 +29,9 @@ class TestModel(unittest.TestCase):
         self.assertRaises(TypeError, check_password_validation, 123)
         self.assertRaises(ValueError, check_password_validation, "12Fs")
         self.assertRaises(ValueError, check_password_validation, "3 gs ")
+        self.assertRaises(ValueError, check_password_validation, "")
         
         # when the password is not validated.
-        self.assertEquals(check_password_validation(""), True)
         self.assertEquals(check_password_validation("fdsafdsfs"), True)
         self.assertEquals(check_password_validation("323131231"), True)
         self.assertEquals(check_password_validation("$@$@#$@$"), True)
