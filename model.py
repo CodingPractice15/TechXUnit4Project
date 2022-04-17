@@ -25,6 +25,58 @@ def get_list_states():
             lst_states.append(state.strip())
     print(lst_states)
     return lst_states
+
+def is_empty(characters):
+    '''
+    Function checks if the input field is empty or not.
+    ARGS: Characters that user will enter in the input field.
+
+    Returns: Boolean --> True if empty, otherwise False.
+    '''
+    if not characters:
+        return True
+    return False
             
+def check_password_length(password):
+    '''
+    Checks if the password is at least 6 characters long.
+    ARGS: password
+
+    Returns: Boolean --> True if lenght is less than 6, otherwise False.
+    '''
+    if len(password) < 6:
+        return True 
+    return False
+            
+def check_password_validation(password):
+    '''
+    Checks if the password has alphanumeric characters and a symbol.
+    ARGS: password
+
+    Returns: Boolean --> True if password has alphanumeric characters, one uppercase
+    , one lowercase, and at least a symbol, otherwise False.
+    '''
+    frequncy = {"uppercase":0, "lowercase":0, "number":0, "symbol":0}
+
+    for character in password:
+        # checking if number
+        if character.isdigit():
+            frequncy["number"] += 1
+        # checking if uppercase character
+        elif character.isupper():
+            frequncy["uppercase"] += 1
+        # checking if lowercase character
+        elif character.islower():
+            frequncy["lowercase"] += 1
+        # checking if symbol
+        elif character in {'!', '@', '#', '%', '^', '&', '*'}:
+            frequncy["symbol"] += 1
+    
+    for val in frequncy.values():
+        # if any one of the condition is not satisfied, password is not validated
+        if val == 0:
+            return True
+    # password is validated 
+    return False
 
 
