@@ -44,6 +44,9 @@ def check_password_length(password):
 
     Returns: Boolean --> True if lenght is less than 6, otherwise False.
     '''
+    if type(password) != str:
+        raise TypeError("Password must be a string")
+
     if len(password) < 6:
         return True 
     return False
@@ -56,6 +59,11 @@ def check_password_validation(password):
     Returns: Boolean --> True if password has alphanumeric characters, one uppercase
     , one lowercase, and at least a symbol, otherwise False.
     '''
+    if type(password) != str:
+        raise TypeError("Password must be a string")
+    if len(password) < 6:
+        raise ValueError("Password's length must be at least 6 characters.")
+
     frequncy = {"uppercase":0, "lowercase":0, "number":0, "symbol":0}
 
     for character in password:

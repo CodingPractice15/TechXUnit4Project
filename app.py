@@ -75,6 +75,11 @@ def newreport():
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
 def signup():
+    '''
+    Functions give two different response on two different requestions. On GET request renders the same page, while on POST
+    request perform some operations.
+    '''
+    # if post request, perform certain operations.
     if request.method == 'POST':
         users = mongo.db.userinfo
         # search the username in database
@@ -82,14 +87,19 @@ def signup():
         email = request.form['email']
         password_before_encrypting = request.form['password']
 
+        # check if both name and email field are empty.
         if is_empty(name) and is_empty(email):
             return render_template("signup.html", response=True, box=True)
+        # check if name field is empty.
         elif is_empty(name):
             return render_template("signup.html", response1=True, box=True)
+        # check if the email field is empty.
         elif is_empty(email):
             return render_template("signup.html", response2=True, box=True)
+        # check if the length of password is less than 6 or not.
         elif check_password_length(password_before_encrypting):
             return render_template("signup.html", response3=True, box=True)
+        # check if the password is validated or not.
         elif check_password_validation(password_before_encrypting):
             return render_template("signup.html", response4=True, box=True)
 
@@ -107,24 +117,31 @@ def signup():
             # add new user to database
             users.insert_one({'name':username, 'email':email, 'password':hashed_password})
             return redirect(url_for('signin'))
+        # if user is already registered, renders the same page with a text message.
         elif existing_user:
             return render_template("signup.html", user_in_database=True, box=True)
+        # if email is already registered, renders the same page with a text message.
         elif existing_email:
             return render_template("signup.html", email_in_database=True, box=True)
+    # if GET request, renders the same page.
     else:
         return render_template("signup.html")
 
 # SignIn Route
 @app.route('/signin',methods=['GET', 'POST'])
 def signin():
+    # if post request, perform certain operations.
     if request.method == 'POST':
         email = request.form["email"]
         password_before_encrypting = request.form["password"]
 
+        # check if the email field is empty.
         if is_empty(email):
             return render_template("signin.html", response2=True, box=True)
+        # check if the length of password is less than 6 or not.
         elif check_password_length(password_before_encrypting):
             return render_template("signin.html", response3=True, box=True)
+        # check if the password is validated or not.
         elif check_password_validation(password_before_encrypting):
             return render_template("signin.html", response4=True, box=True)
 
@@ -132,15 +149,21 @@ def signin():
 
         lookedup_user = mongo.db.userinfo.find_one({"email":email})
 
+        # if email is already registered.
         if lookedup_user:
+            # if password is correct.
             if bcrypt.checkpw(password, lookedup_user["password"]):
                 session["name"] = lookedup_user["name"]
                 return render_template('index.html')
+            # if password is incorrect.
             else:
                 return render_template('signin.html', password_not_correct=True, box=True)
+        # if email is not registered.
         else:
+            # if email is not registered, renders the same page.
             return render_template('signin.html', email_not_in_database=True, box=True)
     else:
+        # if get request, renders same page.
         return render_template('signin.html')
 
 # Logout Route
