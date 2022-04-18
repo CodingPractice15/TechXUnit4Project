@@ -49,7 +49,7 @@ def index():
 
 @app.route('/newreport',methods=['GET', 'POST'])
 def newreport():
-    if request.method == "POST":
+    if request.method == "POST" and session:
         full_name = request.form['name']
         state = request.form['state']
         description = request.form['description']
