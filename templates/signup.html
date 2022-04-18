@@ -60,5 +60,34 @@
       <div class="ques">Already Registered? SignIn from here.</div>
       <div class="signin"><a href="/signin">SignIn</a></div>
     </div>
+
+    {% if box %}
+    <div class="response">
+      {% if response %}
+      <h1>Your name and email fields are empty. Try to give right input.</h1>
+      {% elif response1 %}
+      <h1>Your name field is empty. Try to give right input.</h1>
+      {% elif response2 %}
+      <h1>You email field is empty. Try to give right input.</h1>
+      {% elif response3 %}
+      <h1>Password must be at least 6 characters long.</h1>
+      {% elif response4 %}
+      <h1>
+        Password must have alphanumeric characters: one uppercase, one
+        lowercase, and at least a symbol: '!', '@', '#', '%', '^', '&', '*'
+      </h1>
+      {% elif user_in_database %}
+      <h1>
+        "Username already registered. Try logging in. If you still want to
+        signup, try with another username."
+      </h1>
+      {% elif user_in_database %}
+      <h1>
+        "Email already registered. Try logging in. If you still want to signup,
+        try with another email."
+      </h1>
+      {% endif %}
+    </div>
+    {% endif %}
   </body>
 </html>

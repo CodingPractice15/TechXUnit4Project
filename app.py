@@ -14,6 +14,8 @@
 
 # ---- YOUR APP STARTS HERE ----
 # -- Import section --
+from urllib import response
+from TechXUnit4Project.model import check_password_length, check_password_validation, is_empty
 from flask import Flask, session, url_for
 from flask import render_template
 from flask import request, redirect
@@ -73,48 +75,95 @@ def newreport():
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
 def signup():
+    '''
+    Functions give two different response on two different requestions. On GET request renders the same page, while on POST
+    request perform some operations.
+    '''
+    # if post request, perform certain operations.
     if request.method == 'POST':
         users = mongo.db.userinfo
         # search the username in database
-        existing_user = users.find_one({'name': request.form['username']})
-        existing_email = users.find_one({'email': request.form['email']})
+        name = request.form['username']
+        email = request.form['email']
+        password_before_encrypting = request.form['password']
+
+        # check if both name and email field are empty.
+        if is_empty(name) and is_empty(email):
+            return render_template("signup.html", response=True, box=True)
+        # check if name field is empty.
+        elif is_empty(name):
+            return render_template("signup.html", response1=True, box=True)
+        # check if the email field is empty.
+        elif is_empty(email):
+            return render_template("signup.html", response2=True, box=True)
+        # check if the length of password is less than 6 or not.
+        elif check_password_length(password_before_encrypting):
+            return render_template("signup.html", response3=True, box=True)
+        # check if the password is validated or not.
+        elif check_password_validation(password_before_encrypting):
+            return render_template("signup.html", response4=True, box=True)
+
+        existing_user = users.find_one({'name': name})
+        existing_email = users.find_one({'email': email})
 
         # if user not in database
         if not existing_user and not existing_email:
             username = request.form['username']
             email = request.form['email']
-            password = request.form['password'].encode("utf-8")
+            password = password_before_encrypting.encode("utf-8")
             salt = bcrypt.gensalt()
             hashed_password = bcrypt.hashpw(password, salt)
 
             # add new user to database
             users.insert_one({'name':username, 'email':email, 'password':hashed_password})
             return redirect(url_for('signin'))
+        # if user is already registered, renders the same page with a text message.
         elif existing_user:
-            return "Username already registered. Try logging in. If you still want to signup, try with another username."
+            return render_template("signup.html", user_in_database=True, box=True)
+        # if email is already registered, renders the same page with a text message.
         elif existing_email:
-            return "Email already registered. Try logging in. If you still want to signup, try with another email."
+            return render_template("signup.html", email_in_database=True, box=True)
+    # if GET request, renders the same page.
     else:
         return render_template("signup.html")
 
 # SignIn Route
 @app.route('/signin',methods=['GET', 'POST'])
 def signin():
+    # if post request, perform certain operations.
     if request.method == 'POST':
         email = request.form["email"]
-        password = request.form["password"].encode("utf-8")
+        password_before_encrypting = request.form["password"]
+
+        # check if the email field is empty.
+        if is_empty(email):
+            return render_template("signin.html", response2=True, box=True)
+        # check if the length of password is less than 6 or not.
+        elif check_password_length(password_before_encrypting):
+            return render_template("signin.html", response3=True, box=True)
+        # check if the password is validated or not.
+        elif check_password_validation(password_before_encrypting):
+            return render_template("signin.html", response4=True, box=True)
+
+        password = password_before_encrypting.encode("utf-8")
 
         lookedup_user = mongo.db.userinfo.find_one({"email":email})
 
+        # if email is already registered.
         if lookedup_user:
+            # if password is correct.
             if bcrypt.checkpw(password, lookedup_user["password"]):
                 session["name"] = lookedup_user["name"]
                 return render_template('index.html')
+            # if password is incorrect.
             else:
-                return "Incorrect Password"
+                return render_template('signin.html', password_not_correct=True, box=True)
+        # if email is not registered.
         else:
-            return "Email doesn't exist. Try again!"
+            # if email is not registered, renders the same page.
+            return render_template('signin.html', email_not_in_database=True, box=True)
     else:
+        # if get request, renders same page.
         return render_template('signin.html')
 
 # Logout Route
@@ -123,5 +172,8 @@ def logout():
     # clear the username from the session data
     session.clear()
     return redirect('/')
+
+
+
 
 

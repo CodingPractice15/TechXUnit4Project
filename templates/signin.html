@@ -50,5 +50,24 @@
       <div class="ques">Don't have Account? Register here.</div>
       <div class="signup"><a href="/signup">SignUp</a></div>
     </div>
+
+    {% if box %}
+    <div class="response">
+      {% if response2 %}
+      <h1>You email field is empty. Try to give right input.</h1>
+      {% elif response3 %}
+      <h1>Password must be at least 6 characters long.</h1>
+      {% elif response4 %}
+      <h1>
+        Password must have alphanumeric characters: one uppercase, one
+        lowercase, and at least a symbol: '!', '@', '#', '%', '^', '&', '*'
+      </h1>
+      {% elif email_not_in_database %}
+      <h1>"Email doesn't exist. Try again!"</h1>
+      {% elif password_not_correct %}
+      <h1>"Incorrect Password. Try Again."</h1>
+      {% endif %}
+    </div>
+    {% endif %}
   </body>
 </html>
