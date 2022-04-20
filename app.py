@@ -70,7 +70,11 @@ def newreport():
         return render_template('newreport.html',list_state=list_state)
     else:
         return render_template("signin.html")
-        
+
+@app.route('/searchresults', methods = ['GET'])
+def results():
+    description = mongo.db.description.find()
+    return render_template('searchresults.html',description=description)       
 
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
