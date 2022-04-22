@@ -1,23 +1,30 @@
-<link rel="stylesheet" href="static/searchresults.css" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <!-- Materilize  -->
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!-- importing meterialize icons -->
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <title>Home Page</title>
+</head>
+<body>
+    <!-- nav bar -->
+    {% include 'navbar.html' %} 
+    {% block navbar %} 
+    {% endblock %}
 
 
 <h1><span>Search Results</span></h1>
 
-<div class="form">
-    <form action="/newreport" method="POST">
 
-        <label for="">State</label><br />
-        <input
-        type="text"
-        name="state"
-        placeholder="State"
-        autocomplete="off"
-      /><br /><br />
-
-      <label for="">Crime Description</label><br />
-        <input
-        type="text"
-        name="description"
-        placeholder="Description
-        autocomplete="off"
-      /><br /><br />
+<a href="/searchresults">Search Results</a>
+  {% for item in descriptions %}
+  <a href="/{{item}}">{{item}}</a>
+  {% endfor %}
