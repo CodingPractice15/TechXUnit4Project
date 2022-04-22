@@ -80,7 +80,7 @@ def newreport():
 
 @app.route('/searchresults', methods = ['GET'])
 def searchresults():
-    # descriptions = list(mongo.db.StateCrime.find{})
+    descriptions = list(mongo.db.StateCrime.find{{}})
     return render_template('searchresults.html',descriptions=descriptions)       
 
 # SignUp Route
