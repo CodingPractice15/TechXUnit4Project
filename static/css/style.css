@@ -9,6 +9,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100%;
     
 }
 
@@ -39,9 +40,13 @@ a{
     justify-content: space-around;
     letter-spacing: 7px;
 }
+.map{
+    height: 100%;
+}
 
 .search-box{
-    position: relative;
+    position: fixed;
+    left: 30%;
     top:40%;
     height: 56px;
     margin-right:auto;
