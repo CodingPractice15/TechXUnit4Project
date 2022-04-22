@@ -25,6 +25,8 @@
 
 
 <a href="/searchresults">Search Results</a>
-  {% for item in descriptions %}
-  <a href="/{{item}}">{{item}}</a>
+<li>{% state_name in descriptions %}</li>
+<ul>{% for item in descriptions %}
+    <li></li><a href="/{{item}}">{{item}}</a></li>
   {% endfor %}
+  </ul>
