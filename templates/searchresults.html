@@ -3,21 +3,8 @@
 
 <h1><span>Search Results</span></h1>
 
-<div class="form">
-    <form action="/newreport" method="POST">
 
-        <label for="">State</label><br />
-        <input
-        type="text"
-        name="state"
-        placeholder="State"
-        autocomplete="off"
-      /><br /><br />
-
-      <label for="">Crime Description</label><br />
-        <input
-        type="text"
-        name="description"
-        placeholder="Description
-        autocomplete="off"
-      /><br /><br />
+<a href="/searchresults">Search Results</a>
+  {% for item in descriptions %}
+  <a href="/{{item}}">{{item}}</a>
+  {% endfor %}

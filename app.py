@@ -72,9 +72,9 @@ def newreport():
         return render_template("signin.html")
 
 @app.route('/searchresults', methods = ['GET'])
-def results():
-    description = mongo.db.description.find()
-    return render_template('searchresults.html',description=description)       
+def searchresults():
+    descriptions = list(mongo.db.StateCrime.find{})
+    return render_template('searchresults.html',descriptions=descriptions)       
 
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
