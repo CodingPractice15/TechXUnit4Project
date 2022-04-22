@@ -5,7 +5,7 @@
 
 }
 body{
-    background-image: url("../images/map.png");
+    /* background-image: url("../images/map.png"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,7 +13,6 @@ body{
 }
 
 .nav-bar{
-
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -21,9 +20,7 @@ body{
     letter-spacing: .08625em;
     min-height: 4em;
     color: 	#f8f8ff;
-    text-transform: uppercase;
-    
-    
+    text-transform: uppercase;  
 }
 li{
     list-style: none;
@@ -60,6 +57,7 @@ a{
 }
 input{
     font-size: 18px;
+    text-decoration: None;
 }
 ::placeholder{
     font-size: 18px;
@@ -81,12 +79,13 @@ input{
 }
  
  #search-button{
-    top: 30%;
+    top: 15%;
     position: absolute;
-    left: 88%;
+    left: 83%;
     background-color: #E3E2DF;
     border: none;
     outline: none;
-    font-size: 20px;  
+    font-size: 20px;
+    padding: .5rem;  
  }
 
