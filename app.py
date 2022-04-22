@@ -52,6 +52,7 @@ def index():
     else:
         state_name = request.form["state"]
         return render_template("searchresults.html",state_name=state_name )
+       
 
 
 
