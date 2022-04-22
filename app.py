@@ -52,6 +52,7 @@ def index():
     else:
         state_name = request.form["state"]
         return render_template("searchresults.html",state_name=state_name )
+       
 
 
 
@@ -79,7 +80,7 @@ def newreport():
 
 @app.route('/searchresults', methods = ['GET'])
 def searchresults():
-    descriptions = list(mongo.db.StateCrime.find{})
+    # descriptions = list(mongo.db.StateCrime.find{})
     return render_template('searchresults.html',descriptions=descriptions)       
 
 # SignUp Route
