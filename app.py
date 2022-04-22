@@ -15,7 +15,7 @@
 # ---- YOUR APP STARTS HERE ----
 # -- Import section --
 from urllib import response
-from TechXUnit4Project.model import check_password_length, check_password_validation, is_empty
+# from TechXUnit4Project.model import check_password_length, check_password_validation, is_empty
 from flask import Flask, session, url_for
 from flask import render_template
 from flask import request, redirect
@@ -47,18 +47,24 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/index',methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == "GET":
+        return render_template('index.html')
+    else:
+        state_name = request.form["state"]
+        return render_template("searchresults.html",state_name=state_name )
+
+
 
 @app.route('/newreport',methods=['GET', 'POST'])
 def newreport():
-    if request.method == "POST":
+    if request.method == "POST" and session:
         full_name = request.form['name']
         state = request.form['state']
         description = request.form['description']
         state_crime = mongo.db.StateCrime
         user = mongo.db.report
         user.insert_one({'fullname':full_name,'state':state,"description":description})
-        state_crime.insert_one({state:description})
+        state_crime.insert_one({"state":state,"description":description})
         # calling method from model to get list of US states
         list_state = get_list_states()
 
