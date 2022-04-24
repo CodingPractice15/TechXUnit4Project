@@ -75,12 +75,12 @@ def newreport():
         list_state = get_list_states()
 
         return render_template('newreport.html',list_state=list_state)
-    elif session:
+    elif request.method == "GET" and session:
         # calling method from model to get list of US states
         list_state = get_list_states()
         
         return render_template('newreport.html',list_state=list_state)
-    else:
+    elif request.method == "GET" and not session:
         return render_template("signin.html")
 
 @app.route('/searchresults', methods = ['GET', 'POST'])
