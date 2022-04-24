@@ -24,12 +24,20 @@
         <li>
           <a href="/newreport">Report</a>
         </li>
+        {% if not session %}
         <li>
           <a href="/signin">Sign In</a>
         </li>
         <li>
           <a href="/signup">Sign Up</a>
         </li>
+        {% endif %}
+        {% if session %}
+        <li>
+          <a href="/logout">Log out</a>
+        </li>
+
+        {% endif %}
       </ul>
     </div>
 
