@@ -1,6 +1,6 @@
-from tabnanny import check
+# from tabnanny import check
 import unittest
-from TechXUnit4Project.model import * 
+from model import * 
 
 class TestModel(unittest.TestCase):
 
