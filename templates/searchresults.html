@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/searchresults.css" />
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,13 +21,40 @@
     <!-- nav bar -->
     {% include 'navbar.html' %} {% block navbar %} {% endblock %}
 
-    <h1><span>Search Results</span></h1>
+    <!-- Title  -->
+    <div class="title">
+      <h1>Seach Result</h1>
+    </div>
 
-    <a href="/searchresults">Search Results</a>
+    <!-- All the collections  -->
+    <div class="container">
+      <!-- if user entered something that is a state name but not in our database  -->
+      {% if state_name in list_state and state_name not in database_state%}
+      <div class="box"><h1>There is not any crime in {{state_name}}.</h1></div>
+      {% endif %}
 
-<ul>{% for item in descriptions %}
-    <li></li><a href="/{{item}}">{{item}}</a></li>
-  {% endfor %}
-  </ul>
+      <!-- if the user try to go to the page directly from the url or if the user entered random letters  -->
+      {% if not state_name or state_name not in list_state %}
+      <!-- loop through the database  -->
+      {% for description in description_collections %}
+      <div class="box">
+        <h1>{{description.state}}</h1>
+        <h1>{{description.description}}</h1>
+      </div>
+      {% endfor %} {% endif %}
+
+      <!-- If the user has specified the state name  -->
+      {% if state_name in list_state and state_name in database_state%}
+      <div class="name"><h1>{{state_name}}</h1></div>
+
+      <!-- loop through database  -->
+      {% for description in description_collections %}
+      <!-- check if state name is correct  -->
+      {% if state_name.lower() == description.state.lower()%}
+      <div class="box">
+        <h1>{{description.description}}</h1>
+      </div>
+      {% endif %} {% endfor %} {% endif %}
+    </div>
   </body>
 </html>

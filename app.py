@@ -53,10 +53,13 @@ def index():
         return render_template('index.html')
     else:
         state_name = request.form["state"]
-        return render_template("searchresults.html",state_name=state_name )
-       
-
-
+        description_collections = list(mongo.db.StateCrime.find({}))
+        list_state = get_list_states()
+        database_state = []
+        for description in description_collections:
+            database_state.append(description["state"])
+        return render_template('searchresults.html', description_collections=description_collections, state_name=state_name, list_state=list_state, database_state=database_state)
+      
 
 @app.route('/newreport',methods=['GET', 'POST'])
 def newreport():
@@ -82,8 +85,9 @@ def newreport():
 
 @app.route('/searchresults', methods = ['GET', 'POST'])
 def searchresults():
-    descriptions = list(mongo.db.StateCrime.find({}))
-    return render_template('searchresults.html')       
+    description_collections = list(mongo.db.StateCrime.find({}))
+    list_state = get_list_states()
+    return render_template('searchresults.html', description_collections=description_collections, state_name=None, list_state=list_state)       
 
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
