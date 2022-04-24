@@ -32,8 +32,8 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'database'
 
 # URI of database
-# app.config['MONGO_URI'] = "mongodb+srv://admin:0UnvepiYIMIZPfib@cluster0.cdko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+app.config['MONGO_URI'] = "mongodb+srv://admin:0UnvepiYIMIZPfib@cluster0.cdko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+# app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 
 # For using session object
 app.secret_key = secrets.token_urlsafe(16)
@@ -80,10 +80,10 @@ def newreport():
     else:
         return render_template("signin.html")
 
-@app.route('/searchresults', methods = ['GET'])
+@app.route('/searchresults', methods = ['GET', 'POST'])
 def searchresults():
     descriptions = list(mongo.db.StateCrime.find({}))
-    return render_template('searchresults.html',descriptions=descriptions, state_name = state_name)       
+    return render_template('searchresults.html')       
 
 # SignUp Route
 @app.route('/signup',methods=['GET', 'POST'])
