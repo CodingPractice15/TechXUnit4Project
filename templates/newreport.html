@@ -54,6 +54,9 @@
         <div class="input-button">
           <input type="submit" value="submit" />
         </div>
+        {% if not valid_input%}
+          <strong>Empty discription please enter a valid discription</strong>
+        {% endif %}
       </form>
     </div>
   </body>

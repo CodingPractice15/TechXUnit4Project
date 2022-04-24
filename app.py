@@ -67,19 +67,26 @@ def newreport():
         full_name = request.form['name']
         state = request.form['state']
         description = request.form['description']
-        state_crime = mongo.db.StateCrime
-        user = mongo.db.report
-        user.insert_one({'fullname':full_name,'state':state,"description":description})
-        state_crime.insert_one({"state":state,"description":description})
-        # calling method from model to get list of US states
-        list_state = get_list_states()
+        valid_input = is_valid_description(description)
+        if valid_input:
+            state_crime = mongo.db.StateCrime
+            user = mongo.db.report
+            user.insert_one({'fullname':full_name,'state':state,"description":description})
+            state_crime.insert_one({"state":state,"description":description})
+            # calling method from model to get list of US states
+            list_state = get_list_states()
 
-        return render_template('newreport.html',list_state=list_state)
+            return render_template('newreport.html',list_state=list_state,valid_input=valid_input)
+        else:
+            list_state = get_list_states()
+            return render_template('newreport.html',list_state=list_state,valid_input=valid_input)
+
     elif request.method == "GET" and session:
         # calling method from model to get list of US states
+        valid_input= True
         list_state = get_list_states()
         
-        return render_template('newreport.html',list_state=list_state)
+        return render_template('newreport.html',list_state=list_state,valid_input=valid_input)
     elif request.method == "GET" and not session:
         return render_template("signin.html")
 

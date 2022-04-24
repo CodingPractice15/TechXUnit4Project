@@ -11,6 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+def is_valid_description(description):
+    """ Funcition whill check if descroption is valid
+    Args: str
+
+    Returns
+        Returns true if description is valid False if not valid
+    """
+    check_str = description
+    return check_str.strip() != ""
+
 def get_list_states():
     """ Function reads from text file and returns list of every state
     ARGS: None
